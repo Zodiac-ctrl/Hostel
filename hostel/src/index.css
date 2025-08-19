@@ -1,0 +1,129 @@
+:root {
+  --primary-bg: #ffffff;
+  --secondary-bg: #f5f5f5;
+  --text-color: rgba(0, 0, 0, 0.88);
+  --border-color: #d9d9d9;
+  --card-bg: #ffffff;
+  --card-border: #f0f0f0;
+  --menu-bg: #ffffff;
+  --menu-hover: #f5f5f5;
+  --menu-selected: #e6f7ff;
+  --select-bg: #ffffff;
+  --select-border: #d9d9d9;
+  --select-text: rgba(0, 0, 0, 0.88);
+  --header-bg: #ffffff;
+  --sider-bg: #ffffff;
+}
+
+[data-theme='dark'] {
+  --primary-bg: #1f1f1f;
+  --secondary-bg: #141414;
+  --text-color: rgba(255, 255, 255, 0.85);
+  --border-color: #434343;
+  --card-bg: #1f1f1f;
+  --card-border: #434343;
+  --menu-bg: #1f1f1f;
+  --menu-hover: #2a2a2a;
+  --menu-selected: #2a2a2a;
+  --select-bg: #1f1f1f;
+  --select-border: #434343;
+  --select-text: rgba(255, 255, 255, 0.85);
+  --header-bg: #1f1f1f;
+  --sider-bg: #1f1f1f;
+}
+
+body {
+  background-color: var(--secondary-bg);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+/* Layout components */
+.ant-layout {
+  background: var(--secondary-bg) !important;
+}
+
+.ant-layout-header {
+  background: var(--header-bg) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.ant-layout-sider {
+  background: var(--sider-bg) !important;
+  border-right: 1px solid var(--border-color) !important;
+}
+
+/* Card components */
+.ant-card {
+  background: var(--card-bg) !important;
+  border-color: var(--card-border) !important;
+  color: var(--text-color) !important;
+}
+
+.ant-card-head {
+  color: var(--text-color) !important;
+  border-bottom-color: var(--border-color) !important;
+}
+
+/* Menu components */
+.ant-menu {
+  background: var(--menu-bg) !important;
+  color: var(--text-color) !important;
+}
+
+.ant-menu-item {
+  color: var(--text-color) !important;
+}
+
+.ant-menu-item:hover {
+  background-color: var(--menu-hover) !important;
+  color: var(--text-color) !important;
+}
+
+.ant-menu-item-selected {
+  background-color: var(--menu-selected) !important;
+  color: var(--text-color) !important;
+}
+
+/* Select components */
+.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  background-color: var(--select-bg) !important;
+  border-color: var(--select-border) !important;
+  color: var(--select-text) !important;
+}
+
+.ant-select-dropdown {
+  background-color: var(--select-bg) !important;
+  border-color: var(--select-border) !important;
+}
+
+.ant-select-item {
+  color: var(--text-color) !important;
+}
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: var(--menu-selected) !important;
+}
+
+/* Typography */
+.ant-typography {
+  color: var(--text-color) !important;
+}
+
+/* Custom classes */
+.custom-card {
+  background: var(--card-bg);
+  border-color: var(--card-border);
+  color: var(--text-color);
+}
+
+/* Transitions for smooth theme switching */
+.ant-layout,
+.ant-layout-header,
+.ant-layout-sider,
+.ant-card,
+.ant-menu,
+.ant-select-selector,
+.ant-typography {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
