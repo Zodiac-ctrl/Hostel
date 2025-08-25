@@ -204,6 +204,11 @@ export const DataProvider = ({ children }) => {
       return false
     }
 
+    if (trainee.status !== "staying") {
+      console.error("Trainee is not currently staying:", traineeId)
+      return false
+    }
+
     console.log("Found trainee:", trainee, "in block:", block)
 
     // Check if trainee had amenities
@@ -214,7 +219,13 @@ export const DataProvider = ({ children }) => {
     setTrainees((prev) => {
       const updated = {
         ...prev,
-        [block]: prev[block].map((t) => (t.id === traineeId ? { ...t, status: "checked_out", roomNumber: null } : t)),
+        [block]: prev[block].map((t) => (t.id === traineeId ? { 
+          ...t, 
+          status: "checked_out", 
+          roomNumber: null,
+          bedNumber: null,
+          checkOutDate: new Date().toLocaleDateString('en-GB').split('/').join('.')
+        } : t)),
       }
       console.log("Updated trainees after checkout:", updated)
       return updated

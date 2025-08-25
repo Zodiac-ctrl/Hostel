@@ -89,7 +89,11 @@ const Amenities = () => {
         <Button
           type="primary"
           size="small"
-          onClick={() => showAmenitiesModal(record)}
+          onClick={(e) => {
+            e.stopPropagation();
+            console.log("View amenities button clicked for:", record);
+            showAmenitiesModal(record);
+          }}
           style={{
             backgroundColor: "#1890ff",
             borderColor: "#1890ff",
@@ -102,6 +106,7 @@ const Amenities = () => {
   ];
 
   const showAmenitiesModal = (trainee) => {
+    console.log("View amenities clicked for:", trainee);
     const amenitiesList = [];
     
     // Check all possible amenities from the trainee's amenities object

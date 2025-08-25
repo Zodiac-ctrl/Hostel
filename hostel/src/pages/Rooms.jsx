@@ -84,6 +84,13 @@ const Rooms = () => {
   const handleDeleteRoom = (record) => {
     console.log("Delete room clicked for:", record)
 
+    // Check if room is occupied
+    const occupants = getRoomOccupants(record.number);
+    if (occupants.length > 0) {
+      message.error("Cannot delete occupied room. Please checkout all trainees first.");
+      return;
+    }
+
     Modal.confirm({
       title: "Delete Room",
       content: `Are you sure you want to delete Room ${record.number}?`,
@@ -327,7 +334,7 @@ const Rooms = () => {
             size="small"
             onClick={(e) => {
               e.stopPropagation()
-              console.log("Delete button clicked for room:", record)
+              console.log("Delete button clicked for:", record);
               handleDeleteRoom(record)
             }}
           >

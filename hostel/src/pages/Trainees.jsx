@@ -192,6 +192,7 @@ const Trainees = () => {
   }
 
   const handleViewTrainee = (record) => {
+    console.log("View trainee clicked:", record);
     Modal.info({
       title: `Trainee Details - ${record.name}`,
       content: (
@@ -223,6 +224,25 @@ const Trainees = () => {
           <p style={{ marginBottom: "8px" }}>
             <strong>Status:</strong> {record.status}
           </p>
+          {record.emergencyContact && (
+            <div>
+              <p style={{ marginBottom: "8px", marginTop: "16px" }}>
+                <strong>Emergency Contact:</strong>
+              </p>
+              <p style={{ marginBottom: "4px", marginLeft: "16px" }}>
+                <strong>Name:</strong> {record.emergencyContact.name}
+              </p>
+              <p style={{ marginBottom: "4px", marginLeft: "16px" }}>
+                <strong>Contact:</strong> {record.emergencyContact.contact}
+              </p>
+              <p style={{ marginBottom: "4px", marginLeft: "16px" }}>
+                <strong>Relation:</strong> {record.emergencyContact.relation}
+              </p>
+              <p style={{ marginBottom: "4px", marginLeft: "16px" }}>
+                <strong>Place:</strong> {record.emergencyContact.place}
+              </p>
+            </div>
+          )}
         </div>
       ),
       width: 500,
@@ -247,6 +267,11 @@ const Trainees = () => {
 
   const handleCheckoutTrainee = (record) => {
     console.log("Checkout button clicked for:", record)
+
+    if (record.status !== "staying") {
+      message.warning("Only staying trainees can be checked out");
+      return;
+    }
 
     Modal.confirm({
       title: "Checkout Trainee",
@@ -337,6 +362,7 @@ const Trainees = () => {
             size="small"
             onClick={(e) => {
               e.stopPropagation()
+              console.log("View button clicked for:", record);
               handleViewTrainee(record)
             }}
           >
@@ -347,6 +373,7 @@ const Trainees = () => {
             size="small"
             onClick={(e) => {
               e.stopPropagation()
+              console.log("Edit button clicked for:", record);
               handleEditTrainee(record)
             }}
           >
@@ -359,7 +386,7 @@ const Trainees = () => {
               size="small"
               onClick={(e) => {
                 e.stopPropagation()
-                console.log("Checkout button clicked, record:", record)
+                console.log("Checkout button clicked for:", record);
                 handleCheckoutTrainee(record)
               }}
             >

@@ -75,10 +75,9 @@ const HostelDashboard = () => {
 
   const handleBedClick = (room, bedIndex) => {
     // Only navigate if the bed is available (room is vacant or specific bed is not occupied)
-    const occupants = room.occupants || []
-    const isBedOccupied = bedIndex < occupants.length
+    console.log("Bed clicked:", room, bedIndex);
     
-    if (room.status === "vacant" || !isBedOccupied) {
+    if (room.status === "vacant") {
       navigate("/allotments", { 
         state: { 
           roomNumber: room.number, 
@@ -86,6 +85,8 @@ const HostelDashboard = () => {
           bedNumber: bedIndex + 1
         } 
       })
+    } else {
+      console.log("Bed not available for allocation");
     }
   }
 
@@ -110,7 +111,7 @@ const HostelDashboard = () => {
       const isOccupied = i < occupants.length
       const color = isOccupied ? "#ff4d4f" : "#52c41a"
       const occupant = occupants[i]
-      const isClickable = room.status === "vacant" || !isOccupied
+      const isClickable = room.status === "vacant"
 
       beds.push(
         <div
@@ -131,7 +132,13 @@ const HostelDashboard = () => {
             opacity: isClickable ? 1 : 0.7,
             transition: "all 0.3s ease",
           }}
-          onClick={() => isClickable && handleBedClick(room, i)}
+          onClick={(e) => {
+            e.stopPropagation();
+            if (isClickable) {
+              console.log("Bed click handler called");
+              handleBedClick(room, i);
+            }
+          }}
           onMouseEnter={(e) => {
             if (isClickable) {
               e.target.style.transform = "scale(1.05)"
